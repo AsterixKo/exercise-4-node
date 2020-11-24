@@ -1,0 +1,46 @@
+import { Model, DataTypes, Sequelize} from "sequelize";
+import { database } from "../databases";
+
+
+export class Books extends Model {
+
+    public id!: number;
+    public name!: string;
+    public updateAt!: Date
+
+
+
+}
+
+
+Books.init({
+
+    id: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    }
+
+
+},
+    {
+        tableName: 'books',
+        sequelize: database
+    });
